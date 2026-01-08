@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Books Library</h1>
+
+    <form id="book-form">
+        <input type="text" id="title" placeholder="Book name..." required>
+        <input type="text" id="author" placeholder="Author name..." required>
+        <input type="text" id="isbn" placeholder="ISBN number..." required>
+        <button type="submit">Add Book</button>
+    </form>
+
+    <div class="stats">
+        Total Books: <span id="totalCount">0</span>
+    </div>
+
+    <ul id="book-list">
+    </ul>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

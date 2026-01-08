@@ -1,0 +1,136 @@
+$primary: #6366f1;
+$danger: #ff4757;
+$bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+$card-bg: rgba(255, 255, 255, 0.9);
+$text-main: #2d3436;
+$transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+@mixin glass-effect {
+  background: $card-bg;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+
+@mixin flex-layout($dir: column, $align: center, $gap: 1rem) {
+  display: flex;
+  flex-direction: $dir;
+  align-items: $align;
+  gap: $gap;
+}
+
+body {
+  background: $bg-gradient;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
+  @include flex-layout;
+  padding: 40px 20px;
+  color: $text-main;
+}
+
+.container {
+  @include glass-effect;
+  @include flex-layout(column, stretch, 1.5rem);
+  padding: 2.5rem;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 450px;
+  transition: $transition;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.5px;
+  }
+
+  #book-form {
+    @include flex-layout(column, stretch, 12px);
+
+    input {
+      padding: 12px 16px;
+      border: 2px solid transparent;
+      background: #f1f2f6;
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: $transition;
+
+      &:focus {
+        outline: none;
+        background: white;
+        border-color: $primary;
+        box-shadow: 0 0 0 4px rgba($primary, 0.1);
+      }
+    }
+
+    button {
+      background: $primary;
+      color: white;
+      border: none;
+      padding: 14px;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: $transition;
+      box-shadow: 0 4px 12px rgba($primary, 0.3);
+
+      &:hover {
+        background: darken($primary, 5%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba($primary, 0.4);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+#book-list {
+  margin-top: 25px;
+  @include flex-layout(column, stretch, 10px);
+  padding: 0;
+  list-style: none;
+
+  li {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: $transition;
+    border: 1px solid #eee;
+
+    &:hover {
+      border-color: $primary;
+      background: rgba($primary, 0.02);
+    }
+
+    span {
+      font-weight: 500;
+    }
+
+    .delete {
+      background: rgba($danger, 0.1);
+      color: $danger;
+      border: none;
+      padding: 8px 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: $transition;
+
+      &:hover {
+        background: $danger;
+        color: white;
+      }
+    }
+  }
+}
