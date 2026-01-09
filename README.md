@@ -1,50 +1,52 @@
-# 📚 Book Library System (OOP Implementation)
+# 📚 Book Library System (OOP & SASS)
 
-A professional and lightweight Book Library application built using **Object-Oriented Programming (OOP)** principles in JavaScript. This project serves as a comprehensive guide to understanding both classical and modern JavaScript concepts.
+A professional, feature-rich Book Library application built using advanced **Object-Oriented Programming (OOP)** and **Modern SASS** methodology. This project demonstrates deep knowledge of JavaScript architecture and responsive web design (RWD).
 
 ---
 
-## 📸 Screenshot
+## 📸 Project Preview
 ![Project Screenshot](photo.png)
 
 ---
 
-## 🚀 Features
-- **Add/Remove Books:** Manage your library collection dynamically.
-- **Data Validation:** Built-in checks to ensure all book details are provided.
-- **Smart Formatting:** Book titles are automatically capitalized using Getters.
-- **Live Statistics:** Real-time tracking of the total number of books using Static methods.
-- **Modern UI:** Responsive design built with SASS nesting and variables.
+## 🚀 Key Upgrades & Features
+- **Data Privacy:** Implemented **Private Class Fields (`#`)** to protect sensitive data like book prices.
+- **Inheritance:** Uses a parent `Book` class and specialized `EBook` subclass to handle different book types.
+- **Smart Logic:** Utilizes `instanceof` for type checking and dynamic UI styling.
+- **Advanced SASS:** Built with a modular SCSS structure using **Mixins, Variables, and Nesting**.
+- **Responsive Web Design (RWD):** Fully optimized for Mobile, Tablet, and Desktop views.
+- **Live Statistics:** Real-time tracking of the total number of books.
 
 ## 🛠️ Tech Stack
-- **JavaScript (ES6+):** Logic, Classes, and DOM Manipulation.
-- **SASS (SCSS):** Advanced styling with Mixins and Variables.
-- **HTML5:** Semantic structure.
+- **JavaScript (ES6+):** OOP (Inheritance, Encapsulation, Static Methods).
+- **SASS (SCSS):** Advanced styling with RWD Mixins.
+- **HTML5:** Semantic and accessible structure.
 
 ---
 
-## 🧠 Core JavaScript Concepts Used
+## 🧠 Advanced Concepts Implemented
 
-### 1. Function Constructors & Prototypes
-I used a **Function Constructor** for the notification system. This demonstrates how to attach methods to the `prototype` to save memory, a fundamental concept in JavaScript's inheritance model.
+### 1. Encapsulation (Private Fields)
+I used the `#price` private field to ensure that sensitive data cannot be accessed or modified directly from outside the class. Access is strictly controlled via **Getters**.
 
-### 2. ES6 Classes
-The core application logic is organized into Classes. This provides a cleaner syntax and makes the code more maintainable and scalable.
 
-### 3. Encapsulation (Getters & Setters)
-To ensure data integrity, I implemented:
-- **Getters:** To format data (e.g., converting titles to uppercase) when accessed.
-- **Setters:** To validate data before it is assigned to the object properties.
 
-### 4. Static Methods
-The book counter is handled by a **Static Method**. Since the total number of books is a property of the library itself, not an individual book, it is called directly on the `Book` class.
+### 2. Class Inheritance
+The project features a robust hierarchy where `EBook` extends `Book`. This allows for code reuse while adding specific properties like `format` (PDF/EPUB) and overriding parent methods.
 
-### 5. Event Delegation
-To optimize performance, I used **Event Delegation**. Instead of adding a listener to every delete button, I attached a single listener to the parent element, allowing it to handle events for current and future list items.
+
+
+### 3. Event Delegation & DOM Optimization
+To ensure high performance, a single event listener is attached to the parent container. This handles actions for dynamically added books efficiently.
+
+### 4. Responsive Design (SASS)
+Using custom SASS Mixins, the UI adapts seamlessly to any screen size. The library list switches from a horizontal to a vertical layout on mobile devices for better UX.
+
+
 
 ---
 
-## 📂 Installation
+## 📂 Installation & Usage
 1. Clone the repository:
    ```bash
    git clone [https://github.com/Asilbek2706/Books-Library-JS.git](https://github.com/Asilbek2706/Books-Library-JS.git)
