@@ -1,74 +1,76 @@
-// --- 1. FUNCTION CONSTRUCTOR ---
-function UI_Tools() {}
-
-UI_Tools.prototype.showAlert = function(message, type) {
-    const div = document.createElement('div');
-    div.className = `alert ${type}`;
-    div.innerText = message;
-
-    const container = document.querySelector('.container');
-    const form = document.querySelector('#book-form');
-    container.insertBefore(div, form);
-
-    setTimeout(() => document.querySelector('.alert').remove(), 2500);
-};
-
-// --- 2. ES6 CLASS & GETTER/SETTER ---
+// Regular Book class
 class Book {
-    constructor(title, author, isbn) {
-        this._title = title;
+    #price;
+    constructor(title, author, price) {
+        this.title = title;
         this.author = author;
-        this.isbn = isbn;
+        this.#price = price;
+    }
+    getPrice() {
+        return `$${this.#price}`;
     }
 
-    get title() {
-        return this._title.toUpperCase();
-    }
-
-    set title(newTitle) {
-        this._title = newTitle.length > 0 ? newTitle : "Nomsiz";
-    }
-
-    // --- 3. STATIC METHOD ---
-    static updateCount() {
-        const count = document.querySelectorAll('#book-list li').length;
-        document.getElementById('totalCount').innerText = count;
+    static formatTitle(str) {
+        return str.toUpperCase();
     }
 }
 
-const uiTools = new UI_Tools();
+// Inheritance class from Book
+class EBook extends Book {
+    constructor(title, author, price, format = "PDF") {
+        super(title, author, price);
+        this.format = format;
+    }
 
-document.getElementById('book-form').addEventListener('submit', (e) => {
+    getInfo() {
+        return `${this.title} (Digital ${this.format})`;
+    }
+}
+
+const bookForm = document.getElementById('book-form');
+const bookList = document.getElementById('book-list');
+
+bookForm.addEventListener('submit', e => {
     e.preventDefault();
 
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
-    const isbn = document.getElementById('isbn').value;
+    const price = document.getElementById('price').value;
+    const type = document.getElementById('type').value;
 
-    if(title === '' || author === '' || isbn === '') {
-        uiTools.showAlert("Fill in all fields.!", "error");
+    let newBook;
+    if (type === 'EBook') {
+        newBook = new EBook(title, author, price);
     } else {
-        const book = new Book(title, author, isbn);
-
-        const list = document.getElementById('book-list');
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <span><strong>${book.title}</strong> - ${book.author}</span>
-            <button class="delete">X</button>
-        `;
-        list.appendChild(li);
-
-        Book.updateCount();
-
-        uiTools.showAlert("Book added!", "success");
-        e.target.reset();
+        newBook = new Book(title, author, price);
     }
+
+    addBookToUI(newBook);
+    updateTotal()
+    bookForm.reset();
 });
 
-document.getElementById('book-list').addEventListener('click', (e) => {
-    if(e.target.classList.contains('delete')) {
+function addBookToUI(book) {
+    const li = document.createElement('li');
+    if (book instanceof EBook) li.classList.add('ebook-type');
+
+    li.innerHTML = `
+        <div>
+            <strong>${Book.formatTitle(book.title)}</strong> - ${book.author}
+            <br> <small>Price: ${book.getPrice()}</small>
+        </div>
+        <button class="delete-btn">X</button>
+    `;
+    bookList.appendChild(li);
+}
+
+bookList.addEventListener('click', e => {
+    if (e.target.classList.contains('delete-btn')) {
         e.target.parentElement.remove();
-        Book.updateCount();
-        uiTools.showAlert("Book is deleted", "success");
+        updateTotal();
     }
 });
+
+function updateTotal() {
+    document.getElementById('totalCount').innerText = bookList.children.length;
+}

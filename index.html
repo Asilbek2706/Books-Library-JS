@@ -6,22 +6,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container">
-    <h1>Books Library</h1>
+    <div class="container">
+    <h1>📚 Library System</h1>
 
     <form id="book-form">
-        <input type="text" id="title" placeholder="Book name..." required>
-        <input type="text" id="author" placeholder="Author name..." required>
-        <input type="text" id="isbn" placeholder="ISBN number..." required>
-        <button type="submit">Add Book</button>
+        <input type="text" id="title" placeholder="Book name" required>
+        <input type="text" id="author" placeholder="Author" required>
+        <input type="number" id="price" placeholder="Price ($)" required>
+        <select id="type">
+            <option value="Regular">Book</option>
+            <option value="EBook">E-Book (PDF)</option>
+        </select>
+        <button type="submit">Add book</button>
     </form>
 
-    <div class="stats">
-        Total Books: <span id="totalCount">0</span>
+    <div class="stats-panel">
+        <p>Total books: <span id="totalCount">0</span></p>
     </div>
 
-    <ul id="book-list">
-    </ul>
+    <ul id="book-list"></ul>
 </div>
 
 <script src="app.js"></script>
