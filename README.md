@@ -50,3 +50,6 @@ Using custom SASS Mixins, the UI adapts seamlessly to any screen size. The libra
 1. Clone the repository:
    ```bash
    git clone [https://github.com/Asilbek2706/Books-Library-JS.git](https://github.com/Asilbek2706/Books-Library-JS.git)
+
+👨‍💻 Author <br>
+<strong>Asilbek</strong> - Junior JavaScript Developer
